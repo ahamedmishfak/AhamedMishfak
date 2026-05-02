@@ -70,7 +70,6 @@ nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 24px 60px;
-  mix-blend-mode: normal;
 }
 nav::after {
   content: '';
@@ -122,7 +121,32 @@ nav::after {
   overflow: hidden;
 }
 
-.hero-left { padding-top: 100px; padding-bottom: 60px; }
+/* ── NETWORK CANVAS BACKGROUND ── */
+#net-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.7;
+  display: block;
+}
+
+/* ── HERO CONTENT (above canvas) ── */
+.hero-left {
+  position: relative;
+  z-index: 2;
+  padding-top: 100px;
+  padding-bottom: 60px;
+}
+.hero-right {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .hero-eyebrow {
   display: flex; align-items: center; gap: 16px;
@@ -173,7 +197,12 @@ nav::after {
   text-transform: uppercase;
   color: var(--gold-light);
 }
-.badge-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+.badge-dot {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
 
 .hero-desc {
   font-size: 1rem;
@@ -217,30 +246,21 @@ nav::after {
 }
 .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
 
-/* hero right — circular photo */
-.hero-right {
-  position: relative;
-  height: 100vh;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; animation: rise 1.1s 0.4s ease forwards;
-}
+/* photo */
 .photo-frame {
   position: relative;
   width: 340px; height: 340px;
   display: flex; align-items: center; justify-content: center;
 }
-/* outer decorative ring — slow spin */
 .photo-ring-outer {
-  position: absolute;
-  inset: -28px;
+  position: absolute; inset: -28px;
   border-radius: 50%;
   border: 1px solid rgba(201,168,76,0.25);
   animation: spinRing 18s linear infinite;
 }
 .photo-ring-outer::before {
   content: '';
-  position: absolute;
-  top: -5px; left: 50%;
+  position: absolute; top: -5px; left: 50%;
   transform: translateX(-50%);
   width: 10px; height: 10px;
   background: var(--gold);
@@ -249,24 +269,20 @@ nav::after {
 }
 .photo-ring-outer::after {
   content: '';
-  position: absolute;
-  bottom: -5px; left: 50%;
+  position: absolute; bottom: -5px; left: 50%;
   transform: translateX(-50%);
   width: 6px; height: 6px;
   background: var(--gold-light);
   border-radius: 50%;
   opacity: 0.6;
 }
-/* inner ring — counter spin */
 .photo-ring-inner {
-  position: absolute;
-  inset: -12px;
+  position: absolute; inset: -12px;
   border-radius: 50%;
   border: 1px solid rgba(201,168,76,0.15);
   border-top-color: var(--gold);
   animation: spinRing 10s linear infinite reverse;
 }
-/* photo circle */
 .photo-circle {
   width: 260px; height: 260px;
   border-radius: 50%;
@@ -285,7 +301,6 @@ nav::after {
   display: block;
   filter: grayscale(10%) contrast(1.05);
 }
-/* name + role badge below circle */
 .photo-caption {
   position: absolute;
   bottom: -72px; left: 50%;
@@ -339,7 +354,11 @@ nav::after {
   display: flex; align-items: center; gap: 12px;
   opacity: 0; animation: rise 0.9s 1.2s ease forwards;
 }
-.scroll-line { width: 1px; height: 48px; background: var(--rule); position: relative; overflow: hidden; }
+.scroll-line {
+  width: 1px; height: 48px;
+  background: var(--rule);
+  position: relative; overflow: hidden;
+}
 .scroll-line::after {
   content: '';
   position: absolute; top: -100%; left: 0;
@@ -361,8 +380,7 @@ nav::after {
 .divider {
   position: relative; z-index: 2;
   display: flex; align-items: center; gap: 20px;
-  padding: 0 60px;
-  margin: 0;
+  padding: 0 60px; margin: 0;
 }
 .div-line { flex: 1; height: 1px; background: var(--rule); }
 .div-mark {
@@ -374,7 +392,7 @@ nav::after {
   white-space: nowrap;
 }
 
-/* ── SECTION COMMON ── */
+/* ── SECTIONS ── */
 section { position: relative; z-index: 2; padding: 100px 60px; }
 .section-no {
   font-family: var(--mono);
@@ -413,8 +431,6 @@ section { position: relative; z-index: 2; padding: 100px 60px; }
 .about-body p:first-child { color: var(--paper); font-size: 1.12rem; }
 
 .about-meta { display: flex; flex-direction: column; gap: 32px; margin-top: 8px; }
-
-.meta-block {}
 .meta-label {
   font-family: var(--mono);
   font-size: 0.65rem;
@@ -462,7 +478,6 @@ section { position: relative; z-index: 2; padding: 100px 60px; }
   grid-template-columns: 1fr 1fr;
   gap: 60px;
 }
-.skill-group {}
 .skill-group-title {
   font-family: var(--mono);
   font-size: 0.7rem;
@@ -474,20 +489,13 @@ section { position: relative; z-index: 2; padding: 100px 60px; }
   border-bottom: 1px solid var(--rule);
   display: block;
 }
-
 .skill-bars { display: flex; flex-direction: column; gap: 20px; }
-.skill-row {}
 .skill-meta {
   display: flex; justify-content: space-between; align-items: baseline;
   margin-bottom: 8px;
 }
 .skill-name { font-size: 0.88rem; color: var(--paper); font-weight: 400; letter-spacing: 0.02em; }
-.skill-pct {
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  color: var(--gold);
-  letter-spacing: 0.06em;
-}
+.skill-pct { font-family: var(--mono); font-size: 0.68rem; color: var(--gold); letter-spacing: 0.06em; }
 .skill-track { height: 2px; background: rgba(255,255,255,0.07); position: relative; }
 .skill-fill {
   position: absolute; top: 0; left: 0; height: 100%;
@@ -505,19 +513,9 @@ section { position: relative; z-index: 2; padding: 100px 60px; }
   transition: border-color 0.25s, background 0.25s;
 }
 .cert-card:hover { border-color: var(--rule); background: var(--gold-dim); }
-.cert-num {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  color: var(--gold);
-  min-width: 28px;
-}
+.cert-num { font-family: var(--mono); font-size: 0.65rem; color: var(--gold); min-width: 28px; }
 .cert-name { font-size: 0.88rem; color: var(--paper); line-height: 1.4; }
-.cert-issuer {
-  font-size: 0.72rem;
-  color: var(--mist);
-  margin-top: 2px;
-  display: block;
-}
+.cert-issuer { font-size: 0.72rem; color: var(--mist); margin-top: 2px; display: block; }
 
 /* ── EXPERIENCE ── */
 #experience { background: var(--charcoal); }
@@ -537,9 +535,7 @@ section { position: relative; z-index: 2; padding: 100px 60px; }
   padding-top: 4px;
   text-align: right;
 }
-.exp-line-wrap {
-  display: flex; flex-direction: column; align-items: center;
-}
+.exp-line-wrap { display: flex; flex-direction: column; align-items: center; }
 .exp-dot {
   width: 10px; height: 10px;
   border: 2px solid var(--gold);
@@ -548,13 +544,8 @@ section { position: relative; z-index: 2; padding: 100px 60px; }
   flex-shrink: 0;
   margin-top: 4px;
 }
-.exp-track {
-  flex: 1; width: 1px;
-  background: var(--rule);
-  margin-top: 8px;
-}
+.exp-track { flex: 1; width: 1px; background: var(--rule); margin-top: 8px; }
 .exp-item:last-child .exp-track { display: none; }
-.exp-body { padding-left: 0; }
 .exp-role {
   font-family: var(--serif);
   font-size: 1.3rem;
@@ -603,26 +594,10 @@ section { position: relative; z-index: 2; padding: 100px 60px; }
   transition: background 0.25s;
 }
 .res-card:hover { background: var(--gold-dim); }
-.res-icon {
-  font-size: 1.4rem;
-  display: block;
-  margin-bottom: 4px;
-}
-.res-name {
-  font-family: var(--serif);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--cream);
-  line-height: 1.2;
-}
+.res-icon { font-size: 1.4rem; display: block; margin-bottom: 4px; }
+.res-name { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; color: var(--cream); line-height: 1.2; }
 .res-desc { font-size: 0.82rem; color: var(--mist); }
-.res-arrow {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  color: var(--gold);
-  margin-top: auto;
-  letter-spacing: 0.06em;
-}
+.res-arrow { font-family: var(--mono); font-size: 0.7rem; color: var(--gold); margin-top: auto; letter-spacing: 0.06em; }
 
 /* ── IP TOOL ── */
 #tool { background: var(--charcoal); }
@@ -631,15 +606,8 @@ section { position: relative; z-index: 2; padding: 100px 60px; }
   border: 1px solid var(--rule);
   padding: 60px;
 }
-.tool-header { margin-bottom: 40px; }
-.tool-title {
-  font-family: var(--serif);
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--cream);
-  margin-bottom: 10px;
-}
-.tool-sub { font-size: 0.9rem; color: var(--fog); line-height: 1.7; }
+.tool-title { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; color: var(--cream); margin-bottom: 10px; }
+.tool-sub { font-size: 0.9rem; color: var(--fog); line-height: 1.7; margin-bottom: 40px; }
 .field-label {
   font-family: var(--mono);
   font-size: 0.65rem;
@@ -688,37 +656,11 @@ footer {
   align-items: end;
   border-top: 1px solid var(--rule);
 }
-.footer-left {}
-.footer-name {
-  font-family: var(--serif);
-  font-size: 2rem;
-  font-weight: 900;
-  color: var(--cream);
-  margin-bottom: 6px;
-}
-.footer-role {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 20px;
-  display: block;
-}
-.footer-copy {
-  font-size: 0.8rem;
-  color: var(--mist);
-}
+.footer-name { font-family: var(--serif); font-size: 2rem; font-weight: 900; color: var(--cream); margin-bottom: 6px; }
+.footer-role { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: block; }
+.footer-copy { font-size: 0.8rem; color: var(--mist); }
 .footer-links { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
-.footer-link {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--fog);
-  text-decoration: none;
-  transition: color 0.2s;
-}
+.footer-link { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fog); text-decoration: none; transition: color 0.2s; }
 .footer-link:hover { color: var(--gold); }
 
 /* ── KEYFRAMES ── */
@@ -791,6 +733,10 @@ footer {
 
 <!-- HERO -->
 <section id="hero">
+
+  <!-- NETWORK ANIMATION CANVAS -->
+  <canvas id="net-canvas"></canvas>
+
   <div class="hero-left">
     <div class="hero-eyebrow">
       <span class="eyebrow-line"></span>
@@ -890,9 +836,9 @@ footer {
             <div class="contact-icon">in</div>
             LinkedIn Profile
           </a>
-          <a href="https://tspqatar.com/" target="_blank" class="contact-row">
+          <a href="https://mishfakit.wixsite.com/portfolio" target="_blank" class="contact-row">
             <div class="contact-icon">↗</div>
-            tspqatar.com
+            See My Projects
           </a>
         </div>
       </div>
@@ -1087,7 +1033,7 @@ footer {
 
 <!-- RESOURCES -->
 <section id="resources">
-  <span class="section-no reveal">04 / Resources</span>
+  <span class="section-no reveal">04 / Useful</span>
   <h2 class="section-heading reveal">IT <em>Resources</em></h2>
   <div class="resources-grid reveal">
     <a href="https://www.cisco.com/c/en/us/training-events/training-certifications/certifications.html" target="_blank" class="res-card">
@@ -1135,13 +1081,11 @@ footer {
   <span class="section-no reveal">05 / Interactive Tool</span>
   <h2 class="section-heading reveal">IP Address <em>Validator</em></h2>
   <div class="tool-inner reveal">
-    <div class="tool-header">
-      <div class="tool-title">Network IP Checker</div>
-      <p class="tool-sub">Enter any IPv4 address to validate its format, identify its class, type, and binary representation — a quick diagnostic for network analysis.</p>
-    </div>
+    <div class="tool-title">Network IP Checker</div>
+    <p class="tool-sub">Enter any IPv4 address to validate its format, identify its class, type, and binary representation — a quick diagnostic for network analysis.</p>
     <label class="field-label" for="ipInput">IP Address</label>
     <input type="text" class="ip-inp" id="ipInput" placeholder="e.g.  192.168.1.1" autocomplete="off"/>
-    <a href="#" class="btn-gold" onclick="checkIP();return false;" style="display:inline-block;">Analyse Address</a>
+    <a href="#" class="btn-gold" onclick="checkIP();return false;">Analyse Address</a>
     <div class="tool-result" id="ipResult"></div>
   </div>
 </section>
@@ -1156,56 +1100,265 @@ footer {
   <div class="footer-links">
     <a href="mailto:mishfakit@gmail.com" class="footer-link">Email</a>
     <a href="https://www.linkedin.com/in/ahamed-mishfak-7b749a297" target="_blank" class="footer-link">LinkedIn</a>
-    <a href="https://tspqatar.com/" target="_blank" class="footer-link">Projects</a>
+    <a href="https://mishfakit.wixsite.com/portfolio" target="_blank" class="footer-link">Projects</a>
     <a href="tel:+94769779914" class="footer-link">+94 769 779 914</a>
   </div>
 </footer>
 
 <script>
-/* cursor */
+/* ── CUSTOM CURSOR ── */
 const cur = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
 let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx+'px'; cur.style.top = my+'px'; });
-(function animRing(){
-  rx += (mx-rx)*0.14; ry += (my-ry)*0.14;
-  ring.style.left = rx+'px'; ring.style.top = ry+'px';
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+});
+(function animRing() {
+  rx += (mx - rx) * 0.14; ry += (my - ry) * 0.14;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
   requestAnimationFrame(animRing);
 })();
 
-/* scroll reveal */
+/* ── NETWORK ANIMATION ── */
+(function() {
+  const canvas = document.getElementById('net-canvas');
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', () => { resize(); initNodes(); });
+
+  const NODE_COUNT = 55;
+  const CONNECT_DIST = 150;
+  let nodes = [];
+  let packets = [];
+  let mouse = { x: -999, y: -999 };
+
+  document.getElementById('hero').addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  document.getElementById('hero').addEventListener('mouseleave', () => {
+    mouse.x = -999; mouse.y = -999;
+  });
+
+  function rand(a, b) { return a + Math.random() * (b - a); }
+
+  function initNodes() {
+    const W = canvas.width, H = canvas.height;
+    nodes = Array.from({ length: NODE_COUNT }, () => ({
+      x: rand(20, W - 20),
+      y: rand(20, H - 20),
+      vx: rand(-0.3, 0.3),
+      vy: rand(-0.3, 0.3),
+      r: rand(1.8, 4.5),
+      pulse: rand(0, Math.PI * 2),
+      pulseSpeed: rand(0.016, 0.038),
+      alpha: rand(0.45, 1)
+    }));
+    packets = [];
+  }
+  initNodes();
+
+  function spawnPacket() {
+    const W = canvas.width, H = canvas.height;
+    const a = Math.floor(Math.random() * NODE_COUNT);
+    let b;
+    do { b = Math.floor(Math.random() * NODE_COUNT); } while (b === a);
+    const na = nodes[a], nb = nodes[b];
+    const dist = Math.hypot(nb.x - na.x, nb.y - na.y);
+    if (dist < CONNECT_DIST * 2) {
+      packets.push({
+        ax: na.x, ay: na.y,
+        bx: nb.x, by: nb.y,
+        t: 0,
+        speed: rand(0.007, 0.016)
+      });
+    }
+  }
+
+  let tick = 0;
+  function draw() {
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    tick++;
+    if (tick % 50 === 0) spawnPacket();
+
+    /* move nodes */
+    for (const n of nodes) {
+      /* subtle mouse repulsion */
+      const dx = n.x - mouse.x, dy = n.y - mouse.y;
+      const md = Math.hypot(dx, dy);
+      if (md < 100 && md > 0) {
+        const force = (100 - md) / 100 * 0.4;
+        n.vx += (dx / md) * force;
+        n.vy += (dy / md) * force;
+      }
+      /* speed damping */
+      n.vx *= 0.995; n.vy *= 0.995;
+      /* clamp speed */
+      const spd = Math.hypot(n.vx, n.vy);
+      if (spd > 0.8) { n.vx = (n.vx / spd) * 0.8; n.vy = (n.vy / spd) * 0.8; }
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 20 || n.x > W - 20) n.vx *= -1;
+      if (n.y < 20 || n.y > H - 20) n.vy *= -1;
+      n.pulse += n.pulseSpeed;
+    }
+
+    /* draw edges */
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j];
+        const d = Math.hypot(b.x - a.x, b.y - a.y);
+        if (d < CONNECT_DIST) {
+          const alpha = (1 - d / CONNECT_DIST) * 0.28;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(201,168,76,${alpha})`;
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+        }
+      }
+    }
+
+    /* draw nodes */
+    for (const n of nodes) {
+      const pulse = 0.72 + 0.28 * Math.sin(n.pulse);
+
+      /* outer glow ring for larger nodes */
+      if (n.r > 3.2) {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r + 5 + 2 * Math.sin(n.pulse), 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(201,168,76,${0.12 * pulse})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r + 2, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(201,168,76,${0.22 * pulse})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+
+      /* node body */
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(201,168,76,${n.alpha * pulse})`;
+      ctx.fill();
+
+      /* bright center dot for larger nodes */
+      if (n.r > 2.8) {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r * 0.38, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(232,212,160,${0.7 * pulse})`;
+        ctx.fill();
+      }
+    }
+
+    /* draw mouse-attracted highlight ring */
+    for (const n of nodes) {
+      const d = Math.hypot(n.x - mouse.x, n.y - mouse.y);
+      if (d < 120) {
+        const a = (1 - d / 120) * 0.5;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r + 8, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(201,168,76,${a})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+    }
+
+    /* animate packets */
+    for (let i = packets.length - 1; i >= 0; i--) {
+      const p = packets[i];
+      p.t += p.speed;
+      if (p.t >= 1) { packets.splice(i, 1); continue; }
+
+      const px = p.ax + (p.bx - p.ax) * p.t;
+      const py = p.ay + (p.by - p.ay) * p.t;
+      const tailT = Math.max(0, p.t - 0.09);
+      const tx2 = p.ax + (p.bx - p.ax) * tailT;
+      const ty2 = p.ay + (p.by - p.ay) * tailT;
+
+      /* trail */
+      const grad = ctx.createLinearGradient(tx2, ty2, px, py);
+      grad.addColorStop(0, 'rgba(201,168,76,0)');
+      grad.addColorStop(1, 'rgba(201,168,76,0.85)');
+      ctx.beginPath();
+      ctx.moveTo(tx2, ty2);
+      ctx.lineTo(px, py);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.6;
+      ctx.stroke();
+
+      /* packet head */
+      ctx.beginPath();
+      ctx.arc(px, py, 2.8, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(232,212,160,0.97)';
+      ctx.fill();
+
+      /* packet head glow */
+      ctx.beginPath();
+      ctx.arc(px, py, 5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(201,168,76,0.18)';
+      ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── SCROLL REVEAL ── */
 const reveals = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{
-    if(e.isIntersecting){
-      setTimeout(()=>e.target.classList.add('visible'), i*80);
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
       io.unobserve(e.target);
     }
   });
-},{threshold:0.12});
-reveals.forEach(el=>io.observe(el));
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
 
-/* IP checker */
-function checkIP(){
+/* ── IP CHECKER ── */
+function checkIP() {
   const v = document.getElementById('ipInput').value.trim();
   const box = document.getElementById('ipResult');
   const m = v.match(/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/);
-  if(!m){ box.className='tool-result error'; box.style.display='block'; box.textContent='✕  Invalid format — enter a valid IPv4 address (e.g. 192.168.1.1)'; return; }
-  const o = [+m[1],+m[2],+m[3],+m[4]];
-  if(o.some(x=>x>255)){ box.className='tool-result error'; box.style.display='block'; box.textContent='✕  Each octet must be between 0 and 255.'; return; }
-  const f=o[0];
-  let cls,type,range;
-  if(f>=1&&f<=126){cls='Class A';range='1.0.0.0 – 126.255.255.255';type=f===10?'Private (RFC 1918)':'Public';}
-  else if(f===127){cls='Loopback';range='127.0.0.0 – 127.255.255.255';type='Reserved / Loopback';}
-  else if(f>=128&&f<=191){cls='Class B';range='128.0.0.0 – 191.255.255.255';type=(f===172&&o[1]>=16&&o[1]<=31)?'Private (RFC 1918)':'Public';}
-  else if(f>=192&&f<=223){cls='Class C';range='192.0.0.0 – 223.255.255.255';type=(f===192&&o[1]===168)?'Private (RFC 1918)':'Public';}
-  else if(f>=224&&f<=239){cls='Class D';range='224.0.0.0 – 239.255.255.255';type='Multicast';}
-  else{cls='Class E';range='240.0.0.0 – 255.255.255.255';type='Experimental / Reserved';}
-  box.className='tool-result';
-  box.style.display='block';
-  box.textContent=`✓  Valid IPv4 Address\n${'─'.repeat(36)}\nAddress  :  ${v}\nClass    :  ${cls}\nType     :  ${type}\nRange    :  ${range}\nBinary   :  ${o.map(x=>x.toString(2).padStart(8,'0')).join('.')}`;
+  if (!m) {
+    box.className = 'tool-result error';
+    box.style.display = 'block';
+    box.textContent = '✕  Invalid format — enter a valid IPv4 address (e.g. 192.168.1.1)';
+    return;
+  }
+  const o = [+m[1], +m[2], +m[3], +m[4]];
+  if (o.some(x => x > 255)) {
+    box.className = 'tool-result error';
+    box.style.display = 'block';
+    box.textContent = '✕  Each octet must be between 0 and 255.';
+    return;
+  }
+  const f = o[0];
+  let cls, type, range;
+  if (f >= 1 && f <= 126) { cls = 'Class A'; range = '1.0.0.0 – 126.255.255.255'; type = f === 10 ? 'Private (RFC 1918)' : 'Public'; }
+  else if (f === 127) { cls = 'Loopback'; range = '127.0.0.0 – 127.255.255.255'; type = 'Reserved / Loopback'; }
+  else if (f >= 128 && f <= 191) { cls = 'Class B'; range = '128.0.0.0 – 191.255.255.255'; type = (f === 172 && o[1] >= 16 && o[1] <= 31) ? 'Private (RFC 1918)' : 'Public'; }
+  else if (f >= 192 && f <= 223) { cls = 'Class C'; range = '192.0.0.0 – 223.255.255.255'; type = (f === 192 && o[1] === 168) ? 'Private (RFC 1918)' : 'Public'; }
+  else if (f >= 224 && f <= 239) { cls = 'Class D'; range = '224.0.0.0 – 239.255.255.255'; type = 'Multicast'; }
+  else { cls = 'Class E'; range = '240.0.0.0 – 255.255.255.255'; type = 'Experimental / Reserved'; }
+
+  box.className = 'tool-result';
+  box.style.display = 'block';
+  box.textContent = `✓  Valid IPv4 Address\n${'─'.repeat(36)}\nAddress  :  ${v}\nClass    :  ${cls}\nType     :  ${type}\nRange    :  ${range}\nBinary   :  ${o.map(x => x.toString(2).padStart(8, '0')).join('.')}`;
 }
-document.getElementById('ipInput').addEventListener('keydown',e=>{ if(e.key==='Enter') checkIP(); });
+document.getElementById('ipInput').addEventListener('keydown', e => { if (e.key === 'Enter') checkIP(); });
 </script>
 </body>
 </html>
